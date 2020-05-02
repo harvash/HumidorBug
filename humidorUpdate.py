@@ -8,7 +8,7 @@ def lambda_handler(event,context):
 	conn = psycopg2.connect(host="humidorpg.cwavdpplkanz.us-west-2.rds.amazonaws.com",
 		database="humidor_data",
 		user="postgres",
-		password="Warrant01",
+		password="db_pass",
 		port="5432"
 		)
 	cursor = conn.cursor()
