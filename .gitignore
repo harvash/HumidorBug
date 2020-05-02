@@ -1,6 +1,6 @@
 # ignore secrets & key filetypes
 *.pem
 *.key
-updateHumidor.py
+humidorUpdate.py
 secrets.h
 Lambda.zip
