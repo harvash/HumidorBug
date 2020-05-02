@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: humidor_db
+    image: humidorpg:latest
+
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /pgdb/data
+      POSTGRES_DB: pghumidor
+      
+    volumes:
+      - pgdata:/pgdb/data
+      - pglogs:/pgdb/logs
+      - ./pgdb/scripts:/pgdb/scripts
+      - ./provision/:/docker-entrypoint-initdb.d/
+      
+    command: >
+      postgres -c logging_collector=on 
+      -c log_destination=stderr 
+      -c log_directory=/pgdb/logs 
+      -c log_filename=postgresql.log 
+      -c log_file_mode=0600 
+      -c log_truncate_on_rotation=on 
+      -c log_rotation_age=1d 
+      -c log_rotation_size=10MB  
+      -c shared_preload_libraries='pg_stat_statements'
+      
+    ports:
+      - "5432:5432"
+    networks:
+      humidornet:
+        ipv4_address: 10.3.70.10
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-postgres@email.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      humidornet:
+        ipv4_address: 10.3.70.20
+    restart: unless-stopped
+
+networks:
+  humidornet:
+    external: true    
+
+volumes:
+  pgdata:
+  pglogs:
+  pgadmin:

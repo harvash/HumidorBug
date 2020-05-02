@@ -1,0 +1,4 @@
+This folder will contain your pem keys
+  Amazon_Root_CA1.pem
+  nnnn-certificate.pem
+  nnnn-private.pem.key

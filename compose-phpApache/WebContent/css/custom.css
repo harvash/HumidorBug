@@ -1,0 +1,48 @@
+body {
+	background-image: url("mainPage.jpg");
+	background-color: tan;
+	height: 100%;
+	min-height: 50%;
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size:  600px 250px;
+	position: relative;
+	}
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	}
+	
+.feature {
+	background-color: #90b2ed;
+	color: white;
+	}
+	
+.article-intro {
+    margin-bottom: 25px;
+}
+
+.footer-blurb {
+    padding: 30px 0;
+    background-color: rgb(144, 178, 236);
+    color: white;
+}
+    
+.footer-blurb-item {
+    padding: 30px;
+    }
+ 
+.small-print {
+	background-color: #fff;
+	padding: 30px 0;
+}
+
+#container {
+  width: 250px;
+  height: 250px;
+  position: center center;
+  border-color: #000000;
+  border: 1px solid #999999;
+  padding: 10px;
+  margin: 10px;
+}
+
