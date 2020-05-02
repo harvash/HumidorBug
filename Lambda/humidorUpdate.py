@@ -5,10 +5,10 @@ def lambda_handler(event,context):
 	print("--------------------")
 	msg = json.dumps(event, indent=2)
 	print(msg)
-	conn = psycopg2.connect(host="RDS-ENDPOINT",
-		database="DB-NAME",
-		user="DB-USER",
-		password="db_password",
+	conn = psycopg2.connect(host="humidorpg.cwavdpplkanz.us-west-2.rds.amazonaws.com",
+		database="humidor_data",
+		user="postgres",
+		password="Warrant01",
 		port="5432"
 		)
 	cursor = conn.cursor()
