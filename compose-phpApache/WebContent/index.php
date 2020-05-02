@@ -36,12 +36,46 @@
         return ob_get_clean();
     }
     $query=requireToVar('readings.php');
+    $hilo_temp=requireToVar('hilo_temp.php');
+    $hilo_humid=requireToVar('hilo_humid.php');
     ?>
-<html><body>    
-	<div>
-		<H1> Welcome to Humidor Web  </H1> 
+<html><body>   
+<div class="container">
+	<div class="row">
+		<div class="col" >
+			<H1> Welcome to Humidor Web (Local) </H1> 
+		</div> 
+	<div class="col"   id="gauge">
+    </div>
+  </div>
+  <div class="row">
+	<div class="col" >
+ 
 	</div>
-			<div id="container"></div>
+	<div class="col" id="gauge">
+ 	 <u><b>Humidity Last 24 hrs</b></u>  <br>
+	The highest Humidity reading was 
+			<?php $humid =  json_decode($hilo_humid,true);
+					  echo $humid[0] ['humidity']
+			?>
+		<br>The lowest Humidity reading was: 
+			<?php $humid=  json_decode($hilo_humid,true);
+					  echo $humid[1] ['humidity']
+			?>
+	</div>
+	<div class="col" id="gauge" >
+	<u><b> Temp Last 24 hrs </b></u><br>
+	The highest Temp reading was 
+		<?php $temp =  json_decode($hilo_temp,true);
+				  echo $temp[0] ['temperature']
+		?>
+	<br>The lowest Temp reading was: 
+		<?php $temp =  json_decode($hilo_temp,true);
+				  echo $temp[1] ['temperature']
+		?>
+    </div>
+  </div>
+</div> 
 	<script>
 				var readings = <?php echo $query ?>;
 				anychart.onDocumentReady(function () {
@@ -194,7 +228,7 @@
 			  });
 
 					// draw the chart
-			    gauge.container("container").draw();
+			    gauge.container("gauge").draw();
 			});
 	</script>
 </body></html>
