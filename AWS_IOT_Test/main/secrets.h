@@ -1,3 +1,0 @@
-const char* ssid = "WifiSSID";
-const char* password = "db_pass";
-const char* AWS_endpoint = "amazon-end-point";
