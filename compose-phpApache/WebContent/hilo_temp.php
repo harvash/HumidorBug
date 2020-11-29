@@ -7,7 +7,7 @@ SELECT t.timezone, t.temperature
 FROM 	(select timezone, temperature, row_number() over (order by temperature) as rn,
 			count(*) over () as total_count
 			from sensor_data.humidor_decoded
-		    where timezone >  date_trunc('day',NOW()) 
+		    where timezone >  date_trunc('day',NOW() AT TIME ZONE 'America/New_York' - interval '1 day' ) 
 		) t
 where t.rn = 1 or t.rn = total_count
 and  t.timezone >  date_trunc('day',NOW()) 
