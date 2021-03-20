@@ -39,7 +39,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 
 WiFiClientSecure espClient;
-PubSubClient client(AWS_endpoint, 8883, callback, espClient);
+PubSubClient client(mqttIp, mqttPort, callback, espClient);
 
 long lastMsg = 0;
 
